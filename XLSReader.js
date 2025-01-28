@@ -8,6 +8,11 @@ function SendWarningMessage(message) {
 function SendAllertMessage(message) {
   console.log(message);
 }
+function ConvertDateToTimeStamp(date) {
+  const TimeStamp = new Date(date);
+  return TimeStamp.getTime();
+}
+
 function PopolateTable(data, newKeys) {
   var table = document.createElement("table");
   //var row = table.insertRow(-1);
@@ -77,10 +82,12 @@ function PopolateTable(data, newKeys) {
     }
     row.className = classRow;
     table.appendChild(row);
+    data[dataIndex].Date = ConvertDateToTimeStamp(data[dataIndex].Date);
   }
   table.className = "table table-striped";
   document.getElementById("outputTable").appendChild(table);
 }
+
 function JsonRenameKeys(json, oldKeys, newKeys) {
   for (oldKeysIndex = 0; oldKeysIndex < oldKeys.length; oldKeysIndex++) {
     for (jsonIndex = 0; jsonIndex < json.length; jsonIndex++) {
