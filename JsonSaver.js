@@ -1,4 +1,3 @@
-console.log("JsonSaver.js loaded");
 function SaveJsonToFile(json) {
   const dataStr =
     "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
