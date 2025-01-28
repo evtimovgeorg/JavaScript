@@ -1,11 +1,10 @@
-const fs = require("fs");
 console.log("JsonSaver.js loaded");
 function SaveJsonToFile(json) {
-  fs.writeFile("output.json", JSON.stringify(json), function (err) {
-    if (err) {
-      return err;
-    } else {
-      return "Json saved";
-    }
-  });
+  const dataStr =
+    "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
+  const a = document.createElement("a");
+  a.href = dataStr;
+  a.download = "output.json";
+  a.click();
+  URL.revokeObjectURL(url);
 }
