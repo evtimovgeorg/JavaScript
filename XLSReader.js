@@ -129,7 +129,6 @@ document
       JsonRenameKeys(jsonData, oldKeys, newKeys);
       PopolateTable(jsonData, newKeys);
       SaveJsonToFile(jsonData);
-      console.log(jsonData);
     };
     reader.onerror = function (ex) {
       SendErrorMessage(ex + "Error reading the file");
