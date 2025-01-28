@@ -9,24 +9,22 @@ function SendAllertMessage(message) {
   console.log(message);
 }
 function PopolateTable(data, newKeys) {
-  var table = document.getElementById("output");
-  var row = table.insertRow(-1);
-  var THrow = "<tr>";
+  var table = document.createElement("table");
+  //var row = table.insertRow(-1);
+  var THrow = document.createElement("tr");
   for (key in newKeys) {
-    THrow += "<th>" + newKeys[key] + "</th>";
+    var cell = document.createElement("th");
+    cell.textContent = newKeys[key];
+    THrow.appendChild(cell);
   }
-  THrow += "</tr>";
-  table.innerHTML += THrow;
+  table.appendChild(THrow);
   var alert = false;
   var warning = false;
   var error = false;
 
   for (dataIndex in data) {
-    if (alert == true || warning == true || error == true) {
-      row = "<tr class = 'alert alert-warning'>";
-    } else {
-      row = "<tr>";
-    }
+    var row = document.createElement("tr");
+    var classRow = "";
     for (var key in newKeys) {
       if (
         data[dataIndex][newKeys[key]] == undefined &&
@@ -46,6 +44,7 @@ function PopolateTable(data, newKeys) {
         error = false;
       }
       if (data[dataIndex].ThresholdH <= data[dataIndex].RiverLevel) {
+        classRow = "alert alert-warning";
         if (warning == false) {
           warning = true;
           SendWarningMessage(
@@ -59,6 +58,7 @@ function PopolateTable(data, newKeys) {
         warning = false;
       }
       if (data[dataIndex].ThresholdHH <= data[dataIndex].RiverLevel) {
+        classRow = "alert alert-danger";
         if (alert == false) {
           alert = true;
           SendAllertMessage(
@@ -71,13 +71,15 @@ function PopolateTable(data, newKeys) {
       } else {
         alert = false;
       }
-
-      row += "<td>" + data[dataIndex][newKeys[key]] + "</td>";
+      var cell = document.createElement("td");
+      cell.textContent = data[dataIndex][newKeys[key]];
+      row.appendChild(cell);
     }
-    row += "</tr>";
-
-    table.innerHTML += row;
+    row.className = classRow;
+    table.appendChild(row);
   }
+  table.className = "table table-striped";
+  document.getElementById("outputTable").appendChild(table);
 }
 function JsonRenameKeys(json, oldKeys, newKeys) {
   for (oldKeysIndex = 0; oldKeysIndex < oldKeys.length; oldKeysIndex++) {
