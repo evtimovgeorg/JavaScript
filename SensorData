@@ -1,0 +1,32 @@
+class SensorData {
+  constructor(date, riverLevel, percepition, thresholdH, thresholdHH) {
+    this.date = date;
+    this.riverLevel = riverLevel;
+    this.percepition = percepition;
+    this.thresholdH = thresholdH;
+    this.thresholdHH = thresholdHH;
+  }
+
+  UpdateData(date, riverLevel, percepition, thresholdH, thresholdHH) {
+    this.date = date;
+    this.riverLevel = riverLevel;
+    this.percepition = percepition;
+    this.thresholdH = thresholdH;
+    this.thresholdHH = thresholdHH;
+  }
+  UpdateDate(date) {
+    this.date = date;
+  }
+  UpdateRiverLevel(riverLevel) {
+    this.riverLevel = riverLevel;
+  }
+  UpdatePercepition(percepition) {
+    this.percepition = percepition;
+  }
+  UpdateThresholdH(thresholdH) {
+    this.thresholdH = thresholdH;
+  }
+  UpdateThresholdHH(thresholdHH) {
+    this.thresholdHH = thresholdHH;
+  }
+}
